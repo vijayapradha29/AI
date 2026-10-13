@@ -1,0 +1,29 @@
+STEP A: open login page
+TITLE: OrangeHRM
+URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+DOM SAVED: orangehrm-dom-login.html
+ELEMENT username[0]: {'tag': 'input', 'type': 'text', 'name': 'username', 'class': 'oxd-input oxd-input--focus', 'placeholder': 'Username', 'displayed': True, 'text': ''} -> //input[@name='username']
+ELEMENT password[0]: {'tag': 'input', 'type': 'password', 'name': 'password', 'class': 'oxd-input oxd-input--active', 'placeholder': 'Password', 'displayed': True, 'text': ''} -> //input[@name='password']
+ELEMENT loginButton[0]: {'tag': 'button', 'type': 'submit', 'name': '', 'class': 'oxd-button oxd-button--medium oxd-button--main orangehrm-login-button', 'placeholder': None, 'displayed': True, 'text': 'Login'} -> //button[@type='submit']
+ELEMENT rememberMe: NOT FOUND -> //input[@type='checkbox']
+ELEMENT errorBefore: NOT FOUND -> //div[contains(@class,'oxd-alert')]//p
+ELEMENT validationBefore: NOT FOUND -> //span[contains(@class,'oxd-input-field-error-message')]
+STEP B: empty submit -> field validation
+ELEMENT validationAfterEmptySubmit[0]: {'tag': 'span', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message', 'placeholder': None, 'displayed': True, 'text': 'Required'} -> //span[contains(@class,'oxd-input-field-error-message')]
+ELEMENT validationAfterEmptySubmit[1]: {'tag': 'span', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message', 'placeholder': None, 'displayed': True, 'text': 'Required'} -> //span[contains(@class,'oxd-input-field-error-message')]
+URL after empty submit: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+STEP C: invalid credentials submit -> auth error
+ELEMENT errorAfterInvalid[0]: {'tag': 'p', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--p oxd-alert-content-text', 'placeholder': None, 'displayed': True, 'text': 'Invalid credentials'} -> //div[contains(@class,'oxd-alert')]//p
+ELEMENT errorAfterInvalidDiv[0]: {'tag': 'div', 'type': None, 'name': None, 'class': 'oxd-alert oxd-alert--error', 'placeholder': None, 'displayed': True, 'text': 'Invalid credentials'} -> //div[contains(@class,'oxd-alert')]
+ELEMENT errorAfterInvalidDiv[1]: {'tag': 'div', 'type': None, 'name': None, 'class': 'oxd-alert-content oxd-alert-content--error', 'placeholder': None, 'displayed': True, 'text': 'Invalid credentials'} -> //div[contains(@class,'oxd-alert')]
+ELEMENT errorAfterInvalidDiv[2]: {'tag': 'div', 'type': None, 'name': None, 'class': 'oxd-alert-action', 'placeholder': None, 'displayed': True, 'text': ''} -> //div[contains(@class,'oxd-alert')]
+URL after invalid submit: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+DOM SAVED: orangehrm-dom-invalid.html
+STEP D: valid credentials -> post-login indicator
+URL after valid submit: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+TITLE after valid submit: OrangeHRM
+DOM SAVED: orangehrm-dom-dashboard.html
+ELEMENT dashboardHeading: NOT FOUND -> //h6[contains(@class,'oxd-text')]
+ELEMENT dashboardBreadcrumb: NOT FOUND -> //h6[contains(@class,'oxd-topbar-header-breadcrumb')]//*
+ELEMENT userDropdown: NOT FOUND -> //p[contains(@class,'oxd-userdropdown-name')]
+ELEMENT loginStillPresent: NOT FOUND -> //input[@name='username']

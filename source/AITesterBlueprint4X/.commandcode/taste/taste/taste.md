@@ -1,0 +1,31 @@
+# Taste
+- Prefers read-only, zero-side-effect operations when investigating; explicitly scopes requests to forbid modifying, deleting, or executing anything beyond what was asked. Confidence: 0.9
+- Wants exact, absolute file paths reported and empirical confirmation of whether files exist (actually checked, not asserted from docs). Confidence: 0.75
+- Requires secrets (passwords, tokens, API keys, authorization values) to be redacted from any displayed output, even during diagnostics. Confidence: 0.8
+- Expects responses to answer numbered/multi-part requests item by item, reporting the result of each check explicitly. Confidence: 0.75
+- When inspecting logs/transcripts/history, wants raw, chronologically ordered evidence: do not summarize, reorder, or group events by category, and never invent or assert an action unless the source supports it. Confidence: 0.65
+- When an event type or detail isn't recorded in the source, wants that stated explicitly as unavailable rather than guessed. Confidence: 0.6
+- Prefers not to see internal thinking/chain-of-thought blocks; wants visible explanations and recorded actions instead. Confidence: 0.6
+- For long outputs, wants delivery in explicit numbered batches (with record/line numbers) ending with a clear pointer to where to continue next. Confidence: 0.55
+- Wants claims classified by evidentiary support and kept separate from inference/assumption — labelling each finding explicitly (e.g., CONFIRMED / NOT FOUND / UNKNOWN, or verified vs assistant-reported vs not verifiable) and distinguishing actually executed/recorded actions from intended or merely claimed ones. Confidence: 0.7
+- Wants a visible plan presented for approval before any files are created or modified — no implementation begins until the plan is explicitly approved. Confidence: 0.85
+- Values minimal, lean deliverables: no unnecessary files, redundant abstractions, or misleading placeholder implementations. Confidence: 0.7
+- Requires secrets/credentials to be kept out of source code (supplied via configuration or environment variables) and never exposed in logs or reports. Confidence: 0.7
+- Prefers source files free of explanatory comments. Confidence: 0.65
+- Prefers explicit waits / proper synchronization over fixed sleeps (no `Thread.sleep()`). Confidence: 0.65
+- For Selenium work, wants XPath used exclusively for locators — not CSS selectors, ID, or name locator strategies. Confidence: 0.6
+- Will not perform side-effecting actions against live external services (e.g., automatically submitting fabricated credentials to a live login endpoint) without explicit authorization; sensitive or "negative" tests should run only when appropriate and authorized. Confidence: 0.8
+- On encountering security controls (CAPTCHA, MFA, identity verification), wants the test stopped and the exact limitation reported rather than any attempt to bypass it. Confidence: 0.75
+- Wants existing working artifacts preserved unchanged when new work is added — new work goes in a separate location rather than rewriting the existing project. Confidence: 0.6
+- When revising an existing plan or document, wants the exact changes made (or the full updated version) shown before execution proceeds. Confidence: 0.6
+- Holds the assistant accountable to the originally agreed plan/instructions: will retrospectively audit whether each prescribed step (e.g., planning, launching the browser and navigating, live DOM inspection, test execution) was actually performed and evidence-backed, rather than trusting the deliverable alone; repeats such audits independently rather than accepting the summary once. Confidence: 0.65
+- Wants the current workspace inspected first and existing projects/frameworks reused where applicable rather than duplicating or creating a new project; if the existing workspace cannot be identified, wants the assistant to stop and ask for clarification before making changes. Confidence: 0.6
+- Workflow: do not close, reset, or otherwise disrupt the current terminal/session state while working. Confidence: 0.55
+- Wants a tool or capability's availability empirically verified before it is claimed — do not assert a tool exists or works until it has been checked. Confidence: 0.6
+- Wants provided examples/reference snippets treated as unverified candidates that must be validated against the real/live source rather than copied blindly. Confidence: 0.55
+- Prefers non-secret configurable values (e.g., target URL) externalized to configuration rather than hardcoded throughout the code. Confidence: 0.55
+- Wants execution outcomes classified distinctly (e.g., environment failure vs. authentication restriction vs. locator failure vs. assertion failure vs. genuine pass) rather than lumped together. Confidence: 0.55
+- Wants meaningful exception handling: exceptions must be handled deliberately and re-raised with context; never swallow exceptions or let error handling hide a genuine test failure. Confidence: 0.6
+- Expects the run to produce verification evidence artifacts — an HTML test report and screenshots captured on test failure — and these to be referenced alongside the results. Confidence: 0.55
+- Wants strictly the specified scope delivered — exactly the requested number of test functions/files, with no extra tests, parameterized cases, or unrequested additions. Confidence: 0.55
+- When a fix is needed during implementation, wants the issue identified and the proposed change explained and approved before any file is modified. Confidence: 0.6

@@ -1,0 +1,25 @@
+STEP A: open login page (app renders asynchronously)
+TITLE: OrangeHRM
+URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+ELEMENT username (immediately after get): NOT FOUND expected
+ELEMENT usernameImmediate: NOT FOUND -> //input[@name='username']
+WAIT OK (visible): username field
+ELEMENT username[0]: {'tag': 'input', 'type': 'text', 'name': 'username', 'class': 'oxd-input oxd-input--focus', 'placeholder': 'Username', 'displayed': True, 'text': ''} -> //input[@name='username']
+ELEMENT password[0]: {'tag': 'input', 'type': 'password', 'name': 'password', 'class': 'oxd-input oxd-input--active', 'placeholder': 'Password', 'displayed': True, 'text': ''} -> //input[@name='password']
+ELEMENT loginButton[0]: {'tag': 'button', 'type': 'submit', 'name': '', 'class': 'oxd-button oxd-button--medium oxd-button--main orangehrm-login-button', 'placeholder': None, 'displayed': True, 'text': 'Login'} -> //button[@type='submit']
+ELEMENT authError: NOT FOUND -> //div[contains(@class,'oxd-alert')]//p
+ELEMENT fieldError: NOT FOUND -> //span[contains(@class,'oxd-input-field-error-message')]
+STEP B: empty submit -> field validation
+ELEMENT fieldErrorAfterEmptySubmit[0]: {'tag': 'span', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message', 'placeholder': None, 'displayed': True, 'text': 'Required'} -> //span[contains(@class,'oxd-input-field-error-message')]
+ELEMENT fieldErrorAfterEmptySubmit[1]: {'tag': 'span', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message', 'placeholder': None, 'displayed': True, 'text': 'Required'} -> //span[contains(@class,'oxd-input-field-error-message')]
+URL after empty submit: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+STEP C: invalid credentials submit -> auth error
+ELEMENT authErrorAfterInvalid[0]: {'tag': 'p', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--p oxd-alert-content-text', 'placeholder': None, 'displayed': True, 'text': 'Invalid credentials'} -> //div[contains(@class,'oxd-alert')]//p
+URL after invalid submit: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+STEP D: valid credentials -> post-login indicator
+URL after valid submit: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+TITLE after valid submit: OrangeHRM
+ELEMENT dashboardBreadcrumb immediately after URL change:
+ELEMENT dashboardBreadcrumbImmediate: NOT FOUND -> //h6[contains(@class,'oxd-topbar-header-breadcrumb-module')]
+WAIT OK (visible): dashboard breadcrumb
+ELEMENT dashboardBreadcrumbAfterWait[0]: {'tag': 'h6', 'type': None, 'name': None, 'class': 'oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module', 'placeholder': None, 'displayed': True, 'text': 'Dashboard'} -> //h6[contains(@class,'oxd-topbar-header-breadcrumb-module')]
